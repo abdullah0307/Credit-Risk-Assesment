@@ -233,7 +233,7 @@ if 'page' in st.session_state and st.session_state['page'] == 'features':
         st.session_state['page'] = 'form'
 
 if 'page' in st.session_state and st.session_state['page'] == 'form':
-    st.markdown('<div class="main-title-form">Credit Risk Assessment</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-title-form">Enter Applicant Details</div>', unsafe_allow_html=True)
 
     with st.form("credit_risk_form"):
         # Removed the Full Name input field
