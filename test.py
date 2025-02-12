@@ -241,8 +241,8 @@ if 'page' in st.session_state and st.session_state['page'] == 'form':
         gender = st.selectbox("Gender", ["Male", "Female"], key="gender")
         owns_car = st.selectbox("Owns Car", ["Yes", "No"], key="owns_car")
         owns_house = st.selectbox("Owns House", ["Yes", "No"], key="owns_house")
-        no_of_children = st.number_input("Number of Children", min_value=0, value=0, key="no_of_children")
-        net_yearly_income = st.number_input("Net Yearly Income", min_value=0.0, value=50000.0, key="net_yearly_income")
+        no_of_children = st.number_input("Number of Dependants", min_value=0, value=0, key="no_of_children")
+        net_yearly_income = st.number_input("Net Year Income ($)", min_value=0.0, value=50000.0, key="net_yearly_income")
         no_of_days_employed = st.number_input("Number of Days Employed", min_value=0, value=365,
                                               key="no_of_days_employed")
         occupation_type = st.selectbox("Occupation Type", label_encoder["occupation_type"].classes_,
@@ -307,9 +307,14 @@ if 'page' in st.session_state and st.session_state['page'] == 'form':
 
             st.success("Form submitted successfully!")
             st.subheader("Prediction Result")
-            st.write(f"Prediction for credit card default: **{prediction_label}**")
-
-# Navigation
-if 'page' in st.session_state:
-    if st.button("Back to Home", key="back_to_home"):
-        st.session_state['page'] = 'home'
+            # Change color based on prediction
+            if prediction_label == "Yes":
+                st.markdown(
+                    f'<p style="color: green; font-size: 20px; font-weight: bold;">Prediction for credit card default: <strong>{prediction_label}</strong></p>',
+                    unsafe_allow_html=True
+                )
+            else:
+                st.markdown(
+                    f'<p style="color: red; font-size: 20px; font-weight: bold;">Prediction for credit card default: <strong>{prediction_label}</strong></p>',
+                    unsafe_allow_html=True
+                )
