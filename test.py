@@ -52,11 +52,20 @@ st.markdown(
         text-align: center;
         color: #066BB0; /* Blue text color */
     }
+    .main-title-featuress {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 16px;
+        margin-top: 100px;
+        text-align: center;
+        color: #066BB0; /* Blue text color */
+    }  
+
     .main-title-features {
         font-size: 28px;
         font-weight: bold;
         margin-bottom: 16px;
-        margin-top: 90px;
+        margin-top: 20px;
         text-align: center;
         color: #066BB0; /* Blue text color */
     }
@@ -183,21 +192,28 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Page 1: Introduction (Image 1)
-st.markdown(
-    '<div class="main-title-home">Credit Risk Assessment</div>', unsafe_allow_html=True
-)
-st.markdown(
-    '<div class="subtitle-home">Advanced machine learning for precise credit risk assessment. Make informed lending decisions with confidence.</div>',
-    unsafe_allow_html=True,
-)
-if st.button("Start Assessment", key="start_assessment"):
-    st.session_state["page"] = "features"
+# Sidebar with dropdowns
+with st.sidebar:
+    st.title("Navigation")
+    section1 = st.selectbox(
+        "",
+        ["Home", "Credit Risk Assessment"],
+        key="section1",
+    )
 
-# Page 2: Features (Image 2)
-if "page" in st.session_state and st.session_state["page"] == "features":
+# Page 1: Introduction (Image 1)
+if section1 == "Home":
     st.markdown(
-        '<div class="main-title-features">Powerful Features for Risk Assessment</div>',
+        '<div class="main-title-home">Credit Risk Assessment</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="subtitle-home">Advanced machine learning for precise credit risk assessment. Make informed lending decisions with confidence.</div>',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        '<div class="main-title-featuress">Powerful Features for Risk Assessment</div>',
         unsafe_allow_html=True,
     )
     # Feature cards
@@ -232,6 +248,9 @@ if "page" in st.session_state and st.session_state["page"] == "features":
         """,
             unsafe_allow_html=True,
         )
+
+# Page 2: Features (Image 2)
+if section1 == "Credit Risk Assessment":
     st.markdown(
         '<div class="main-title-features">Ready to Transform Your Risk Assessment?</div>',
         unsafe_allow_html=True,
@@ -240,11 +259,9 @@ if "page" in st.session_state and st.session_state["page"] == "features":
         '<div class="subtitle-features">Join leading financial institutions using our advanced credit risk assessment platform.</div>',
         unsafe_allow_html=True,
     )
-    if st.button("Get Started", key="get_started"):
-        st.session_state["page"] = "form"
+    # if st.button("Get Started", key="get_started"):
+    #     st.session_state["page"] = "form"
 
-# Page 3: Form (Image 3)
-if "page" in st.session_state and st.session_state["page"] == "form":
     st.markdown(
         '<div class="main-title-form">Enter Applicant Details</div>',
         unsafe_allow_html=True,
